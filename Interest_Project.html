@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Interest_Project</title>
+    <meta charset="utf-8" />
+
+    <!-- 每頁必要 -->
+    <script type="text/javascript" src="../../../Scripts/Common/jquery.js"></script>
+    <!-- 載入頁面使用的基本 CSS＋JS -->
+    <script type="text/javascript" src="../../../Scripts/BaseScript.js"></script>
+    <!-- 頁面專屬 JS -->
+    <script type="text/javascript" src="Interest_Project.js"></script>
+</head>
+<body>
+
+    <style>
+        .record {
+            margin-bottom: 100px;
+        }
+        /*
+        .record::after {
+            clear: both;
+            content:"";
+            display: block;
+            height: 0.5em;
+            vertical-align: bottom;
+            width: 100%;
+            border-top: 2px solid red;
+        }*/
+    </style>
+
+    <div class="page_inner">
+        <div class="page_section">
+            <div id="insertDiv" class="rwd_form clearfix complex">
+                <div class="rwd_form_caption">Interest_Project</div>
+
+                <!--<input name="Project_Uid" type="text" id="Project_Uid" />-->
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">代碼:</div>
+                    <div class="rwd_form_right">
+                        <input name="ProjectID" type="text" id="ProjectID" maxlength="5"/>
+                    </div>
+                </div>
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">名稱:</div>
+                    <div class="rwd_form_right">
+                        <input name="Project_Item" type="text" id="Project_Item" />
+                    </div>
+                </div>
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">指標利率:</div>
+                    <div class="rwd_form_right">
+                        <input name="Project_Point" type="radio" value="1"/>﻿保單分紅
+                        <input name="Project_Point" type="radio" value="2"/>﻿中華郵政
+                    </div>
+                </div>
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">表定利率:</div>
+                    <div class="rwd_form_right">
+                        <input class="Project_Interest" name="Project_Interest" type="radio" value="1"/>是
+                        <input class="Project_Interest" name="Project_Interest" type="radio" value="0"/>否
+                        <p> (若為【否】則(1)無須輸入分段內容(2)前端使用者可以全部修改)</p>
+                    </div>
+                </div>
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">利率區分:</div>
+                    <div class="rwd_form_right">
+                        <select id="InterestApart" name="InterestApart">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">違約適用方式:</div>
+                    <div class="rwd_form_right">
+                        <select id="BreachMode" name="BreachMode">
+                        </select>
+                    </div>
+                </div>
+
+
+                <div id="section_block">
+
+                    <div class="rwd_form_row">
+                        <div class="rwd_form_left">分段別:</div>
+                        <div class="rwd_form_right">
+                            <select name="ProjectSection" id="ProjectSection">
+                                <option value="1">一段式</option>
+                                <option value="2">二段式</option>
+                                <option value="3">三段式</option>
+                                <option value="4">四段式</option>
+                                <option value="5">五段式</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="rwd_form_row">
+                        <table id="edit" class="rwd_form">
+                            <thead>
+                                <tr>
+                                    <th>段別</th>
+                                    <th>期間</th>
+                                    <th>種類</th>
+                                    <th>政策性貸款補貼息</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>一</th>
+                                    <td>
+                                        第<input name="s_month" type="text" />個月～
+                                        第<input name="e_month" type="text" />個月
+                                    </td>
+                                    <td>
+                                        <select name="rate">
+                                            <option value="1">固定利率</option>
+                                            <option value="2">加碼利率</option>
+                                        </select>
+                                        <input name="Section_Kind_Percent" type="text" />﻿%
+                                    </td>
+                                    <td>
+                                        <input name="Is_government1" type="radio" onclick="getElementById('Is_government1_text').style.display='none'" value="0" checked="checked"/>否
+                                        <input name="Is_government1" type="radio" onclick="getElementById('Is_government1_text').style.display='inline-block'" value="1"/>是
+                                        <label id="Is_government1_text" style="display: none"><input class="GovPercent_text" type="text" />%</label>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>二</th>
+                                    <td>
+                                        第<input name="s_month" type="text" />個月～
+                                        第<input name="e_month" type="text" />個月
+                                    </td>
+                                    <td>
+                                        <select name="rate">
+                                            <option value="1">固定利率</option>
+                                            <option value="2">加碼利率</option>
+                                        </select>
+                                        <input name="Section_Kind_Percent" type="text" />﻿%
+                                    </td>
+                                    <td>
+                                        <input name="Is_government2" type="radio" onclick="getElementById('Is_government2_text').style.display='none'" value="0" checked="checked"/>否
+                                        <input name="Is_government2" type="radio" onclick="getElementById('Is_government2_text').style.display='inline-block'" value="1"/>是
+                                        <label id="Is_government2_text" style="display: none"><input class="GovPercent_text" type="text" />%</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>三</th>
+                                    <td>
+                                        第<input name="s_month" type="text" />個月～
+                                        第<input name="e_month" type="text" />個月
+                                    </td>
+                                    <td>
+                                        <select name="rate">
+                                            <option value="1">固定利率</option>
+                                            <option value="2">加碼利率</option>
+                                        </select>
+                                        <input name="Section_Kind_Percent" type="text" />﻿%
+                                    </td>
+                                    <td>
+                                        <input name="Is_government3" type="radio" onclick="getElementById('Is_government3_text').style.display='none'" value="0" checked="checked"/>否
+                                        <input name="Is_government3" type="radio" onclick="getElementById('Is_government3_text').style.display='inline-block'" value="1"/>是
+                                        <label id="Is_government3_text" style="display: none"><input class="GovPercent_text" type="text" />%</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>四</th>
+                                    <td>
+                                        第<input name="s_month" type="text" />個月～
+                                        第<input name="e_month" type="text" />個月
+                                    </td>
+                                    <td>
+                                        <select name="rate">
+                                            <option value="1">固定利率</option>
+                                            <option value="2">加碼利率</option>
+                                        </select>
+                                        <input name="Section_Kind_Percent" type="text" />﻿%
+                                    </td>
+                                    <td>
+                                        <input name="Is_government4" type="radio" onclick="getElementById('Is_government4_text').style.display='none'" value="0" checked="checked"/>否
+                                        <input name="Is_government4" type="radio" onclick="getElementById('Is_government4_text').style.display='inline-block'" value="1" />是
+                                        <label id="Is_government4_text" style="display: none"><input class="GovPercent_text" type="text" />%</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>五</th>
+                                    <td>
+                                        第<input name="s_month" type="text" />個月～
+                                        第<input name="e_month" type="text" />個月
+                                    </td>
+                                    <td>
+                                        <select name="rate">
+                                            <option value="1">固定利率</option>
+                                            <option value="2">加碼利率</option>
+                                        </select>
+                                        <input name="Section_Kind_Percent" type="text" />﻿%
+                                    </td>
+                                    <td>
+                                        <input name="Is_government5" type="radio" onclick="getElementById('Is_government5_text').style.display='none'" value="0" checked="checked"/>否
+                                        <input name="Is_government5" type="radio" onclick="getElementById('Is_government5_text').style.display='inline-block'" value="1"/>是
+                                        <label id="Is_government5_text" style="display: none"><input class="GovPercent_text" type="text" />%</label>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">順位:</div>
+                    <div class="rwd_form_right">
+                        <input name="SeqNo" type="text" id="SeqNo" />
+                    </div>
+                </div>
+
+                <div class="rwd_form_row half">
+                    <div class="rwd_form_left">狀態:</div>
+                    <div class="rwd_form_right">
+                        <select name="Status" id="Status">
+                            <option value="1">啟用</option>
+                            <option value="0">停用</option>
+                        </select>
+                    </div>
+                </div>
+
+                <input type="hidden" name="Project_Uid" id="Project_Uid" value="" />
+            </div>
+
+            <div align="center" class="add_div">
+                <a id="btnConfirm" class="button">新增</a>
+            </div>
+
+            <div align="center" class="update_div">
+                <a id="btnUpdate" class="button">修改</a>
+                <a id="btnCancel" class="button">取消</a>
+            </div>
+
+            <div id="view_list">
+                <div class="record rwd_form clearfix complex">
+                    <div class="rwd_form_row half">
+                        <div class="rwd_form_left">代碼:</div>
+                        <div class="rwd_form_right" name="view_ProjectID">
+                        </div>
+                    </div>
+
+                    <div class="rwd_form_row half">
+                        <div class="rwd_form_left">名稱:</div>
+                        <div class="rwd_form_right" name="view_Project_Item">
+                        </div>
+                    </div>
+
+                    <div class="rwd_form_row half">
+                        <div class="rwd_form_left">指標利率:</div>
+                        <div class="rwd_form_right" name="view_Project_Point"></div>
+                    </div>
+
+                    <div class="rwd_form_row half">
+                        <div class="rwd_form_left">表定利率:</div>
+                        <div class="rwd_form_right" name="view_Project_Interest">
+                        </div>
+                    </div>
+
+                    <div class="rwd_form_row half">
+                        <div class="rwd_form_left">利率區分:</div>
+                        <div class="rwd_form_right" name="view_InterestApartName"></div>
+                    </div>
+
+                    <div class="rwd_form_row half">
+                        <div class="rwd_form_left">違約適用方式:</div>
+                        <div class="rwd_form_right" name="view_BreachModeName">
+                        </div>
+                    </div>
+
+                    <!--<div class="rwd_form_row">-->
+                        <table name="section" class="rwd_form"></table>
+                    <!--</div>-->
+
+                    <!--<div class="rwd_form_row">--><!--</div>-->
+                        <table name="breach" class="rwd_form">
+                            <!--<caption>違約條款</caption>-->
+                        </table>
+
+
+                        <div class="rwd_form_row half">
+                            <div class="rwd_form_left">順位:</div>
+                            <div class="rwd_form_right" name="view_SeqNo">
+                            </div>
+                        </div>
+
+                        <div class="rwd_form_row half">
+                            <div class="rwd_form_left">狀態:</div>
+                            <div class="rwd_form_right" name="view_Status">
+                            </div>
+                        </div>
+
+                        <div class="rwd_form_row half">
+                            <div class="rwd_form_left">最近修改日期:</div>
+                            <div class="rwd_form_right" name="view_LastUpdate_Date">
+                            </div>
+                        </div>
+
+                        <!--<div class="rwd_form_row half">
+                            <div class="rwd_form_left"></div>
+                            <div class="rwd_form_right"></div>
+                        </div>-->
+                        <div class="rwd_form_row half">
+                            <div class="rwd_form_left">維護:</div>
+                            <div class="rwd_form_right" name="view_Maintain">
+                                <a class="button maintain">修改</a>
+                            </div>
+                        </div>
+
+                        <!--<div class="rwd_form_row half">
+                            <div class="rwd_form_left"></div>
+                            <div class="rwd_form_right"></div>
+                        </div>-->
+                    </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+</html>
